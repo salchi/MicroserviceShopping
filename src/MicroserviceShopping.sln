@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceShopping.ProductService.WebAPI", "1 - ProductService\MicroserviceShopping.ProductService.WebAPI\MicroserviceShopping.ProductService.WebAPI.csproj", "{A602049B-01D8-4657-A50D-6F525CB61826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceShopping.ProductService", "1 - ProductService\MicroserviceShopping.ProductService.WebAPI\MicroserviceShopping.ProductService.csproj", "{A602049B-01D8-4657-A50D-6F525CB61826}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - ProductService", "1 - ProductService", "{FC6ED592-B903-407C-8191-3E7A9A669601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceShopping.ProductService.Domain", "1 - ProductService\MicroserviceShopping.ProductService.Domain\MicroserviceShopping.ProductService.Domain.csproj", "{81EDF632-94C6-4D36-AF44-1E150FA48AAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceShopping.ProductService.Domain", "1 - ProductService\MicroserviceShopping.ProductService.Domain\MicroserviceShopping.ProductService.Domain.csproj", "{81EDF632-94C6-4D36-AF44-1E150FA48AAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceShopping.ProductService.Infrastructure", "1 - ProductService\MicroserviceShopping.ProductService.Infrastructure\MicroserviceShopping.ProductService.Infrastructure.csproj", "{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceShopping.ProductService.Application", "1 - ProductService\MicroserviceShopping.ProductService.Application\MicroserviceShopping.ProductService.Application.csproj", "{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceShopping.ProductService.Infrastructure", "1 - ProductService\MicroserviceShopping.ProductService.Infrastructure\MicroserviceShopping.ProductService.Infrastructure.csproj", "{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,7 +37,6 @@ Global
 		{A602049B-01D8-4657-A50D-6F525CB61826} = {FC6ED592-B903-407C-8191-3E7A9A669601}
 		{81EDF632-94C6-4D36-AF44-1E150FA48AAB} = {FC6ED592-B903-407C-8191-3E7A9A669601}
 		{70B3359F-014A-4FE1-8F76-D0CCAF95CF7A} = {FC6ED592-B903-407C-8191-3E7A9A669601}
-		{C3DB8CF1-CD93-4FD7-BFE1-477DDA8B5779} = {FC6ED592-B903-407C-8191-3E7A9A669601}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DF84084-83C0-4C3A-8700-F7D5F67A53C7}

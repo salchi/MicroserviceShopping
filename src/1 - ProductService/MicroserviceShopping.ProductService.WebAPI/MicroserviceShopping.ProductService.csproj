@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MicroserviceShopping.ProductService.Application\MicroserviceShopping.ProductService.Application.csproj" />
     <ProjectReference Include="..\MicroserviceShopping.ProductService.Infrastructure\MicroserviceShopping.ProductService.Infrastructure.csproj" />
   </ItemGroup>
 

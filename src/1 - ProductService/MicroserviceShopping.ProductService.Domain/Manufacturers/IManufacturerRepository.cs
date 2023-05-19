@@ -5,6 +5,6 @@
       Task<int> AddAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default);
       Task UpdateAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default);
       Task DeleteAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default);
-      Task<Manufacturer?> GetByIdAsync(IReadOnlyCollection<int> id, CancellationToken cancellationToken = default);
+      Task<Manufacturer?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
    }
 }

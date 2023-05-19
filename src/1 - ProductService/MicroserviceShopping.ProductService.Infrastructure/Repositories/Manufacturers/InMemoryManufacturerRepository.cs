@@ -14,9 +14,10 @@ namespace MicroserviceShopping.ProductService.Infrastructure.Repositories.Manufa
          throw new NotImplementedException();
       }
 
-      public Task<Manufacturer?> GetByIdAsync(IReadOnlyCollection<int> id, CancellationToken cancellationToken = default)
+      public async Task<Manufacturer?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
       {
-         throw new NotImplementedException();
+         await Task.CompletedTask;
+         return new Manufacturer(id, "test", new Address("line1", null, new City("AT", "6060", "Hall")));
       }
 
       public Task UpdateAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default)

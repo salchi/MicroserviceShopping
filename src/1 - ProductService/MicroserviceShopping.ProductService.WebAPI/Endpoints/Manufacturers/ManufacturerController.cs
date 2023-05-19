@@ -18,7 +18,7 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       }
 
       [HttpGet]
-      [Route("/", Name = "Get")]
+      [Route("", Name = "GetById")]
       [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(GetManufacturerByIdQueryResult))]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
       public async Task<IActionResult> GetByIdAsync([FromQuery] GetManufacturerByIdQuery query, CancellationToken cancellationToken)

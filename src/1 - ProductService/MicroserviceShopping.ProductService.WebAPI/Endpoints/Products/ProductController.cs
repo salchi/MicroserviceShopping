@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Add;
+using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Products.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetByIds;
@@ -64,6 +66,23 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products
             return BadRequest();
 
          return GetCreatedResult(result.Product!);
+      }
+
+      [HttpPut]
+      [Route("{Id}", Name = "UpsertProduct")]
+      [SwaggerResponse((int)HttpStatusCode.Created, type: typeof(ProductDTO))]
+      [SwaggerResponse((int)HttpStatusCode.NoContent)]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> UpsertProductAsync([FromRoute] int Id, [FromBody] UpsertProductCommand command, CancellationToken cancellationToken)
+      {
+         command.Product.Id = Id;
+
+         var result = await mediator.Send(command, cancellationToken);
+
+         if (result.WasAdded)
+            return GetCreatedResult(result.Product);
+
+         return NoContent();
       }
 
       private CreatedResult GetCreatedResult(ProductDTO dto)

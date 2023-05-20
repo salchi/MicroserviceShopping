@@ -23,6 +23,12 @@ namespace MicroserviceShopping.ProductService.Infrastructure.Repositories.Manufa
             manufacturers.Remove(found);
       }
 
+      public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default)
+      {
+         var found = await GetByIdAsync(id, cancellationToken);
+         return found is not null;
+      }
+
       public Task<Manufacturer?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
       {
          var found = manufacturers.FirstOrDefault(m => m.Id == id);

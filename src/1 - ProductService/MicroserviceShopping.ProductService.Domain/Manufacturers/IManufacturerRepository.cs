@@ -6,5 +6,6 @@
       Task UpdateAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default);
       Task DeleteAsync(int id, CancellationToken cancellationToken = default);
       Task<Manufacturer?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
+      Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
    }
 }

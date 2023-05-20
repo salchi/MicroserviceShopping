@@ -13,7 +13,7 @@ namespace MicroserviceShopping.ProductService.Domain.Products
 
       public Product(int id, string name, string description, ProductImages images, int manufacturerId)
       {
-         Id = Guard.Against.NegativeOrZero(id);
+         Id = Guard.Against.Negative(id);
          Name = Guard.Against.NullOrWhiteSpace(name);
          Description = Guard.Against.NullOrWhiteSpace(description);
          Images = Guard.Against.Null(images);

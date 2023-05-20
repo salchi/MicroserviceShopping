@@ -4,9 +4,9 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products.DTOs
 {
    public class ProductWithoutIdDTO
    {
-      public string Name { get; set; }
-      public string Description { get; set; }
-      public ProductImagesDTO Images { get; set; }
+      public string Name { get; set; } = string.Empty;
+      public string Description { get; set; } = string.Empty;
+      public ProductImagesDTO Images { get; set; } = new ProductImagesDTO();
 
       public int ManufacturerId { get; set; }
 
@@ -18,6 +18,11 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products.DTOs
          ManufacturerId = product.ManufacturerId;
       }
 
-      public Product ToDomainObject() => new(id: 0, Name, Description, Images.ToDomainObject(), ManufacturerId);
+        public ProductWithoutIdDTO()
+        {
+            // nothing to do
+        }
+
+        public Product ToDomainObject() => new(id: 0, Name, Description, Images.ToDomainObject(), ManufacturerId);
    }
 }

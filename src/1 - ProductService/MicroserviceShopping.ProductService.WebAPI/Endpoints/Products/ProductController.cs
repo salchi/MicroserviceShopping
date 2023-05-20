@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
+using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Products.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetByIds;
@@ -50,5 +52,21 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products
 
          return NotFound();
       }
+
+      [HttpPost]
+      [Route("", Name = "AddProduct")]
+      [SwaggerResponse((int)HttpStatusCode.Created, type: typeof(ProductDTO))]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> AddProductAsync([FromBody] AddProductCommand command, CancellationToken cancellationToken)
+      {
+         var result = await mediator.Send(command, cancellationToken);
+         if (!result.ManufacturerExists)
+            return BadRequest();
+
+         return GetCreatedResult(result.Product!);
+      }
+
+      private CreatedResult GetCreatedResult(ProductDTO dto)
+         => Created(Url.RouteUrl("GetProductById", new GetProductByIdQuery() { Id = dto.Id }) ?? string.Empty, dto);
    }
 }

@@ -10,7 +10,7 @@ namespace MicroserviceShopping.ProductService.Domain.Manufacturers
 
       public Manufacturer(int id, string name, Address address)
       {
-         Id = Guard.Against.NegativeOrZero(id);
+         Id = Guard.Against.Negative(id);
          Name = Guard.Against.NullOrWhiteSpace(name);
          Address = Guard.Against.Null(address);
       }

@@ -4,9 +4,9 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
 {
    public class AddressDTO
    {
-      public string Line1 { get; }
-      public string? Line2 { get; }
-      public CityDTO City { get; }
+      public string Line1 { get; set; } = string.Empty;
+      public string? Line2 { get; set; }
+      public CityDTO City { get; set; } = new CityDTO();
 
       public AddressDTO(Address address)
       {
@@ -14,5 +14,12 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
          Line2 = address.Line2;
          City = new CityDTO(address.City);
       }
+
+      public AddressDTO()
+      {
+         // nothing to do
+      }
+
+      public Address ToAddress() => new(Line1, Line2, City.ToCity());
    }
 }

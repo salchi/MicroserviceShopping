@@ -4,9 +4,9 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
 {
    public class CityDTO
    {
-      public string CountryCode { get; }
-      public string ZipCode { get; }
-      public string Name { get; }
+      public string CountryCode { get; set; } = string.Empty;
+      public string ZipCode { get; set; } = string.Empty;
+      public string Name { get; set; } = string.Empty;
 
       public CityDTO(City city)
       {
@@ -14,5 +14,12 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
          ZipCode = city.ZipCode;
          Name = city.Name;
       }
+
+      public CityDTO()
+      {
+         // nothing to do
+      }
+
+      public City ToCity() => new(CountryCode, ZipCode, Name);
    }
 }

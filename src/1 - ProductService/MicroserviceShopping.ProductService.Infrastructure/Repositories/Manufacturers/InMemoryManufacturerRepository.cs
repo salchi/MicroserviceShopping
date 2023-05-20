@@ -6,7 +6,7 @@ namespace MicroserviceShopping.ProductService.Infrastructure.Repositories.Manufa
    {
       public Task<int> AddAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default)
       {
-         throw new NotImplementedException();
+         return Task.FromResult(55);
       }
 
       public Task DeleteAsync(Manufacturer manufacturer, CancellationToken cancellationToken = default)

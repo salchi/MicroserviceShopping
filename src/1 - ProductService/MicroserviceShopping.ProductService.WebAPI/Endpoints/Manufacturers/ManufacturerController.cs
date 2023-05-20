@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -6,7 +7,7 @@ using System.Net;
 
 namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
 {
-    [Route("api/v1/manufacturers")]
+   [Route("api/v1/manufacturers")]
    [ApiController]
    public class ManufacturerController : ControllerBase
    {
@@ -25,6 +26,16 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       {
          var result = await mediator.Send(query, cancellationToken);
          return Ok(result);
+      }
+
+      [HttpPost]
+      [Route("", Name = "Add")]
+      [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(AddManufacturerCommandResult))]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> RegisterAsync([FromBody] AddManufacturerCommand command, CancellationToken cancellationToken)
+      {
+         var result = await mediator.Send(command, cancellationToken);
+         return Created(Url.RouteUrl("GetById", new GetManufacturerByIdQuery() { Id = result.Manufacturer.Id }) ?? string.Empty, result.Manufacturer);
       }
    }
 }

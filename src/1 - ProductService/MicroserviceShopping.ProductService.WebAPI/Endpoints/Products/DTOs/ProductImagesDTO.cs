@@ -14,5 +14,7 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products.DTOs
          Medium = productImages.Medium;
          Large = productImages.Large;
       }
+
+      public ProductImages ToDomainObject() => new(Small, Medium, Large);
    }
 }

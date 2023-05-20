@@ -15,15 +15,15 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.A
 
       public async Task<AddManufacturerCommandResult> Handle(AddManufacturerCommand request, CancellationToken cancellationToken)
       {
-         var toAdd = request.Manufacturer.ToManufacturer();
+         var toAdd = request.Manufacturer.ToDomainObject();
 
          var id = await unitOfWork.Manufacturers.AddAsync(toAdd, cancellationToken);
-         var addedDTO = new ManufacturerDTO(toAdd)
+         var dto = new ManufacturerDTO(toAdd)
          {
             Id = id
          };
 
-         return new AddManufacturerCommandResult(addedDTO);
+         return new AddManufacturerCommandResult(dto);
       }
    }
 }

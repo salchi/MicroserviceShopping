@@ -20,6 +20,6 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
          // nothing to do
       }
 
-      public City ToCity() => new(CountryCode, ZipCode, Name);
+      public City ToDomainObject() => new(CountryCode, ZipCode, Name);
    }
 }

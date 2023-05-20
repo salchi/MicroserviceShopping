@@ -18,6 +18,6 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
          // nothing to do
       }
 
-      public Manufacturer ToManufacturer() => new(id: 0, Name, Address.ToAddress());
+      public Manufacturer ToDomainObject() => new(id: 0, Name, Address.ToDomainObject());
    }
 }

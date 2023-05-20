@@ -15,7 +15,7 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.U
 
       public async Task<UpsertManufacturerCommandResult> Handle(UpsertManufacturerCommand request, CancellationToken cancellationToken)
       {
-         var toUpsert = request.Manufacturer.ToManufacturer();
+         var toUpsert = request.Manufacturer.ToDomainObject();
 
          var resultDto = new ManufacturerDTO(toUpsert);
 

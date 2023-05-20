@@ -1,5 +1,8 @@
 ﻿using MediatR;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.DTOs;
+using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetByIds;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,6 +19,21 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products
       public ProductController(IMediator mediator)
       {
          this.mediator = mediator;
+      }
+
+      [HttpGet]
+      [Route("{Id}", Name = "GetProductById")]
+      [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(ProductDTO))]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      [SwaggerResponse((int)HttpStatusCode.NotFound)]
+      public async Task<IActionResult> GetProductByIdAsync([FromRoute] GetProductByIdQuery query, CancellationToken cancellationToken)
+      {
+         var result = await mediator.Send(query, cancellationToken);
+
+         if (result.WasFound)
+            return Ok(result.Product);
+
+         return NotFound();
       }
 
       [HttpGet]

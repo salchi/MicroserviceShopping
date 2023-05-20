@@ -22,11 +22,11 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       }
 
       [HttpGet]
-      [Route("{Id}", Name = "GetById")]
+      [Route("{Id}", Name = "GetManufacturerById")]
       [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(ManufacturerDTO))]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
       [SwaggerResponse((int)HttpStatusCode.NotFound)]
-      public async Task<IActionResult> GetByIdAsync([FromRoute] GetManufacturerByIdQuery query, CancellationToken cancellationToken)
+      public async Task<IActionResult> GetManufacturerByIdAsync([FromRoute] GetManufacturerByIdQuery query, CancellationToken cancellationToken)
       {
          var result = await mediator.Send(query, cancellationToken);
 
@@ -37,21 +37,21 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       }
 
       [HttpPost]
-      [Route("", Name = "Add")]
+      [Route("", Name = "AddManufacturer")]
       [SwaggerResponse((int)HttpStatusCode.Created, type: typeof(ManufacturerDTO))]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-      public async Task<IActionResult> AddAsync([FromBody] AddManufacturerCommand command, CancellationToken cancellationToken)
+      public async Task<IActionResult> AddManufacturerAsync([FromBody] AddManufacturerCommand command, CancellationToken cancellationToken)
       {
          var result = await mediator.Send(command, cancellationToken);
          return GetCreatedResult(result.Manufacturer);
       }
 
       [HttpPut]
-      [Route("{Id}", Name = "Upsert")]
+      [Route("{Id}", Name = "UpsertManufacturer")]
       [SwaggerResponse((int)HttpStatusCode.Created, type: typeof(ManufacturerDTO))]
       [SwaggerResponse((int)HttpStatusCode.NoContent)]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-      public async Task<IActionResult> UpsertAsync([FromRoute] int Id, [FromBody] UpsertManufacturerCommand command, CancellationToken cancellationToken)
+      public async Task<IActionResult> UpsertManufacturerAsync([FromRoute] int Id, [FromBody] UpsertManufacturerCommand command, CancellationToken cancellationToken)
       {
          command.Manufacturer.Id = Id;
 
@@ -64,16 +64,16 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       }
 
       [HttpDelete]
-      [Route("{Id}", Name = "Delete")]
+      [Route("{Id}", Name = "DeleteManufacturer")]
       [SwaggerResponse((int)HttpStatusCode.NoContent)]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-      public async Task<IActionResult> DeleteAsync([FromRoute] DeleteManufacturerByIdCommand command, CancellationToken cancellationToken)
+      public async Task<IActionResult> DeleteManufacturerAsync([FromRoute] DeleteManufacturerByIdCommand command, CancellationToken cancellationToken)
       {
          var _ = await mediator.Send(command, cancellationToken);
          return NoContent();
       }
 
       private CreatedResult GetCreatedResult(ManufacturerDTO dto)
-         => Created(Url.RouteUrl("GetById", new GetManufacturerByIdQuery() { Id = dto.Id }) ?? string.Empty, dto);
+         => Created(Url.RouteUrl("GetManufacturerById", new GetManufacturerByIdQuery() { Id = dto.Id }) ?? string.Empty, dto);
    }
 }

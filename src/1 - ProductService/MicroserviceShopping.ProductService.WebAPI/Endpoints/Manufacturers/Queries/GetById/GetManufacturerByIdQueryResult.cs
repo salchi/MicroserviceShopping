@@ -1,12 +1,12 @@
-﻿using MicroserviceShopping.ProductService.Domain.Manufacturers;
+﻿using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
 
 namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById
 {
     public class GetManufacturerByIdQueryResult
     {
-        public Manufacturer? Manufacturer { get; }
+        public ManufacturerDTO? Manufacturer { get; }
 
-        public GetManufacturerByIdQueryResult(Manufacturer? manufacturer)
+        public GetManufacturerByIdQueryResult(ManufacturerDTO? manufacturer)
         {
             Manufacturer = manufacturer;
         }

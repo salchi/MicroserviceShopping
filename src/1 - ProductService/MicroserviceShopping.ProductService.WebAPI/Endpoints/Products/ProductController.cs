@@ -1,15 +1,11 @@
 ﻿using MediatR;
-using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
-using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Upsert;
-using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
-using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.Delete;
-using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Delete;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Products.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetByIds;
+using MicroserviceShopping.ProductService.Endpoints.Products.Queries.Search;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
@@ -55,6 +51,16 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products
             return Ok(result.Products);
 
          return NotFound();
+      }
+
+      [HttpGet]
+      [Route("search", Name = "SearchProducts")]
+      [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(ProductDTO[]))]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> SearchProductsAsync([FromQuery] SearchProductsQuery query, CancellationToken cancellationToken)
+      {
+         var result = await mediator.Send(query, cancellationToken);
+         return Ok(result.Products);
       }
 
       [HttpPost]

@@ -19,10 +19,10 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       }
 
       [HttpGet]
-      [Route("", Name = "GetById")]
+      [Route("{Id}", Name = "GetById")]
       [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(GetManufacturerByIdQueryResult))]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-      public async Task<IActionResult> GetByIdAsync([FromQuery] GetManufacturerByIdQuery query, CancellationToken cancellationToken)
+      public async Task<IActionResult> GetByIdAsync([FromRoute] GetManufacturerByIdQuery query, CancellationToken cancellationToken)
       {
          var result = await mediator.Send(query, cancellationToken);
          return Ok(result);

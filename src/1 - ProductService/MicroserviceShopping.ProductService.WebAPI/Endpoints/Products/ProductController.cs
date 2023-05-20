@@ -2,8 +2,10 @@
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.Delete;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Add;
+using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Delete;
 using MicroserviceShopping.ProductService.Endpoints.Products.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Products.DTOs;
 using MicroserviceShopping.ProductService.Endpoints.Products.Queries.GetById;
@@ -82,6 +84,16 @@ namespace MicroserviceShopping.ProductService.Endpoints.Products
          if (result.WasAdded)
             return GetCreatedResult(result.Product);
 
+         return NoContent();
+      }
+
+      [HttpDelete]
+      [Route("{Id}", Name = "DeleteProduct")]
+      [SwaggerResponse((int)HttpStatusCode.NoContent)]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> DeleteProductAsync([FromRoute] DeleteProductByIdCommand command, CancellationToken cancellationToken)
+      {
+         var _ = await mediator.Send(command, cancellationToken);
          return NoContent();
       }
 

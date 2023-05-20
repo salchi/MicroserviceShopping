@@ -2,13 +2,14 @@
 
 namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById
 {
-    public class GetManufacturerByIdQueryResult
-    {
-        public ManufacturerDTO? Manufacturer { get; }
+   public class GetManufacturerByIdQueryResult
+   {
+      public ManufacturerDTO? Manufacturer { get; }
+      public bool WasFound => Manufacturer is not null;
 
-        public GetManufacturerByIdQueryResult(ManufacturerDTO? manufacturer)
-        {
-            Manufacturer = manufacturer;
-        }
-    }
+      public GetManufacturerByIdQueryResult(ManufacturerDTO? manufacturer)
+      {
+         Manufacturer = manufacturer;
+      }
+   }
 }

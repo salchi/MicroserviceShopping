@@ -5,8 +5,8 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
    public class ManufacturerDTO
    {
       public int Id { get; set; }
-      public string Name { get; } = string.Empty;
-      public AddressDTO Address { get; } = new AddressDTO();
+      public string Name { get; set; } = string.Empty;
+      public AddressDTO Address { get; set; } = new AddressDTO();
 
       public ManufacturerDTO(Manufacturer manufacturer)
       {
@@ -19,5 +19,7 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs
       {
          // nothing to do
       }
+
+      public Manufacturer ToManufacturer() => new(Id, Name, Address.ToAddress());
    }
 }

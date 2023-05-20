@@ -2,6 +2,7 @@
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Add;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Commands.Upsert;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.DTOs;
+using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.Delete;
 using MicroserviceShopping.ProductService.Endpoints.Manufacturers.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -50,13 +51,25 @@ namespace MicroserviceShopping.ProductService.Endpoints.Manufacturers
       [SwaggerResponse((int)HttpStatusCode.Created, type: typeof(ManufacturerDTO))]
       [SwaggerResponse((int)HttpStatusCode.NoContent)]
       [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-      public async Task<IActionResult> UpsertAsync([FromBody] UpsertManufacturerCommand command, CancellationToken cancellationToken)
+      public async Task<IActionResult> UpsertAsync([FromRoute] int Id, [FromBody] UpsertManufacturerCommand command, CancellationToken cancellationToken)
       {
+         command.Manufacturer.Id = Id;
+
          var result = await mediator.Send(command, cancellationToken);
 
          if (result.WasAdded)
             return GetCreatedResult(result.Manufacturer);
 
+         return NoContent();
+      }
+
+      [HttpDelete]
+      [Route("{Id}", Name = "Delete")]
+      [SwaggerResponse((int)HttpStatusCode.NoContent)]
+      [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+      public async Task<IActionResult> DeleteAsync([FromRoute] DeleteManufacturerByIdCommand command, CancellationToken cancellationToken)
+      {
+         var _ = await mediator.Send(command, cancellationToken);
          return NoContent();
       }
 
